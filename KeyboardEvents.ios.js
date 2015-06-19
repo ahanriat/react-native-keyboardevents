@@ -11,20 +11,20 @@ var events = [
   'WillHide',
   'DidHide',
   'WillChangeFrame',
-  'DidChangeFrame',
-].map((event) => 'Keyboard' + event);
+  'DidChangeFrame'
+].map(function(event) {return 'Keyboard' + event});
 
-events.forEach((eventKey) => {
+events.forEach(function(eventKey) {
   var event = RNKeyboardEventsManager[eventKey];
   RCTDeviceEventEmitter.addListener(
     event,
-    (frames) => {
+    function(frames) {
       KeyboardEventEmitter.emit(event, frames);
     }
   );
 });
 
-module.exports = events.reduce((carry, eventKey) => {
+module.exports = events.reduce(function(carry, eventKey) {
   carry[eventKey + 'Event'] = RNKeyboardEventsManager[eventKey];
   return carry;
 },{
