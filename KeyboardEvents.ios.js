@@ -1,11 +1,9 @@
 'use strict';
 
-var {
-  DeviceEventEmitter,
-  NativeModules: {
-    RNKeyboardEventsManager,
-  },
-} = require('react-native');
+var React = require('react-native');
+var DeviceEventEmitter = React.DeviceEventEmitter;
+var RNKeyboardEventsManager = React.NativeModules.RNKeyboardEventsManager;
+
 var EventEmitter = require('eventemitter3');
 
 var KeyboardEventEmitter = new EventEmitter();
