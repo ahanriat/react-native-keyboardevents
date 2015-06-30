@@ -1,7 +1,11 @@
 'use strict';
 
-var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
-var RNKeyboardEventsManager = require('NativeModules').RNKeyboardEventsManager;
+var {
+  DeviceEventEmitter,
+  NativeModules: {
+    RNKeyboardEventsManager,
+  },
+} = require('react-native');
 var EventEmitter = require('eventemitter3');
 
 var KeyboardEventEmitter = new EventEmitter();
@@ -16,7 +20,7 @@ var events = [
 
 events.forEach(function(eventKey) {
   var event = RNKeyboardEventsManager[eventKey];
-  RCTDeviceEventEmitter.addListener(
+  DeviceEventEmitter.addListener(
     event,
     function(frames) {
       KeyboardEventEmitter.emit(event, frames);
